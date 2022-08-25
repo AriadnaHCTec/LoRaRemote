@@ -1,3 +1,10 @@
+/*
+Made by:Ariadna Huesca Coronado
+	A01749161@tec.mx
+	arihuescac@hotmail.com
+Modified (DD/MM/YY): 
+	Ariadna Huesca  22/08/2022 Creation
+*/
 var ros;
 var robot_IP;
 
