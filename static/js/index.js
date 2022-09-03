@@ -5,43 +5,113 @@ Made by:Ariadna Huesca Coronado
 Modified (DD/MM/YY): 
 	Ariadna Huesca  22/08/2022 Creation
 */
+
+
 var ros;
-var robot_IP;
+var robot_IP="localhost";
 
-robot_IP = _config.ROSBridge_IP;
+ros = new ROSLIB.Ros({
+    url: "ws://" + robot_IP + ":9090"
+});
 
-    ros = new ROSLIB.Ros({
-        url: "ws://" + robot_IP + ":9090"
-    });
 
-    if (_config.is_WebVideo){
-        var zed_topic = _config.topic_Zed_Camera;
-        var zed_src = "http://" + _config.WEB_Video_Server + ":8080/stream?topic=" + zed_topic + "&type=ros_compressed";
-        document.getElementById("Zed_Camera").src = zed_src; 
+var listener_IMU = new ROSLIB.Topic({
+  ros : ros,
+  name : '/IMU',
+  messageType : 'std_msgs/String'
+});
 
-        var usb_topic = _config.topic_USB_Camera;
-        var usb_src = "http://" + _config.WEB_Video_Server + ":8080/stream?topic=" + usb_topic + "&type=ros_compressed";
-        document.getElementById("USB_Camera").src = usb_src; 
-    } else {
-        var listener = new ROSLIB.Topic({
-            ros : ros,
-            name : _config.topic_Zed_Camera + '/compressed',
-            messageType : 'sensor_msgs/CompressedImage'
-          });
-        
-        listener.subscribe(function(message) {
-          var imagedata = "data:image/png;base64," + message.data;
-          document.getElementById("Zed_Camera").src = imagedata;      
-        });
+listener_IMU.subscribe(function(message) {
 
-        var listener = new ROSLIB.Topic({
-            ros : ros,
-            name : _config.topic_USB_Camera + '/compressed',
-            messageType : 'sensor_msgs/CompressedImage'
-          });
-        
-        listener.subscribe(function(message) {
-          var imagedata = "data:image/png;base64," + message.data;
-          document.getElementById("USB_Camera").src = imagedata;      
-        });
-    } 
+});
+
+var listener_GPS = new ROSLIB.Topic({
+  ros : ros,
+  name : '/GPS',
+  messageType : 'std_msgs/String'
+});
+
+listener_GPS.subscribe(function(message) {
+
+});
+
+var listener_wheel_speed = new ROSLIB.Topic({
+  ros : ros,
+  name : '/wheel_speed',
+  messageType : 'std_msgs/Int32'
+});
+
+listener_wheel_speed.subscribe(function(message) {
+  document.getElementById("wheel_speed").innerHTML = message.data;
+});
+
+var listener_trilladora_speed = new ROSLIB.Topic({
+  ros : ros,
+  name : '/trilladora_speed',
+  messageType : 'std_msgs/Int32'
+});
+
+listener_trilladora_speed.subscribe(function(message) {
+  document.getElementById("trilladora_speed").innerHTML = message.data;
+});
+
+var listener_fill = new ROSLIB.Topic({
+  ros : ros,
+  name : '/fill',
+  messageType : 'std_msgs/Int32'
+});
+
+listener__fill.subscribe(function(message) {
+
+});
+
+var listener_kilos = new ROSLIB.Topic({
+  ros : ros,
+  name : '/kilos',
+  messageType : 'std_msgs/Int32'
+});
+
+listener_kilos.subscribe(function(message) {
+
+});
+
+var listener_fuel_level = new ROSLIB.Topic({
+  ros : ros,
+  name : '/fuel_level',
+  messageType : 'std_msgs/Int32'
+});
+
+listener_fuel_level.subscribe(function(message) {
+
+});
+
+var listener_mileage = new ROSLIB.Topic({
+  ros : ros,
+  name : '/mileage',
+  messageType : 'std_msgs/Int32'
+});
+
+listener_mileage.subscribe(function(message) {
+
+});
+
+var listener_oil_level = new ROSLIB.Topic({
+  ros : ros,
+  name : '/oil_level',
+  messageType : 'std_msgs/Int32'
+});
+
+listener_oil_level.subscribe(function(message) {
+
+});
+
+var listener_wheel_pressure = new ROSLIB.Topic({
+  ros : ros,
+  name : '/wheel_pressure',
+  messageType : 'std_msgs/Int32'
+});
+
+listener_wheel_pressure.subscribe(function(message) {
+
+});
+

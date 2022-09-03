@@ -21,9 +21,13 @@ random.seed()
 def index():
     return render_template('index.html')
 
-@application.route('/ciencias')
-def ciencias():
-    return render_template('ciencias.html')
+@application.route('/collect')
+def collect():
+    return render_template('collect.html')
+
+@application.route('/checking')
+def checking():
+    return render_template('checking.html')
 
 @application.route('/data_sensor1')
 def data_sensor1():

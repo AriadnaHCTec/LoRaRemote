@@ -60,12 +60,17 @@
 						</a>
 					</li>
 					<li class="nav-item">
-						<a href="ciencias">
+						<a href="collect">
 							<i class="la la-flask"></i>
-							<p>Science</p>
+							<p>Collect</p>
 						</a>
 					</li>
-					
+					<li class="nav-item">
+						<a href="check">
+							<i class="la la-flask"></i>
+							<p>check</p>
+						</a>
+					</li>
 				</ul>
 			</div>
 		</div>
@@ -133,10 +138,10 @@
 								<div class="card-body">
 									<div class="chart-circle mt-4 mb-3">
 										<div id="Motor1" class="mt-4 mb-3">
-											<p>Voltaje</p>
-											<p id="VMotor1"></p>
-											<p>Corriente</p>
-											<p id="CMotor1"></p>
+											<p>Trilladora Speed</p>
+											<p id="trilladora_speed"></p>
+											<p>wheel Speed</p>
+											<p id="wheel_speed"></p>
 										</div>
 									</div>
 								</div>
@@ -353,5 +358,6 @@
 <script src="{{url_for('static', filename='js/plugin/jquery-scrollbar/jquery.scrollbar.min.js')}}"></script>
 <script src="{{url_for('static', filename='js/ready.min.js')}}"></script>
 <script src="{{url_for('static', filename='js/demo.js')}}"></script>
+<script src="{{url_for('static', filename='js/index.js')}}"></script>
 
 </html>
