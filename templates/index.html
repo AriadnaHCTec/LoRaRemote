@@ -79,19 +79,42 @@
 				<div class="container-fluid">
 					<h4 class="page-title">Dashboard</h4>
 					<div class="row">
-						<div class="col-md-12">
+						<div class="col-md-8">
 							<div class="card">
 								<div class="card-header">
 									<h4 class="card-title">Map</h4>
-									<p class="card-category">Zed</p>
+									<!--<p class="card-category">Zed</p>-->
 								</div>
 								<div class="card-body">
-									<div class="chart-circle mt-4 mb-3">
-										<img id="img" src ="http://34.204.181.137:8080/stream?topic=/usb_cam/image_raw&type=mjpeg&quality=80">	
+									<div class="mapcontainer">
+										<div class="map">
+											<span>Alternative content for the map</span>
+										</div>
 									</div>
 								</div>
-								<div class="card-footer">
+								<!--<div class="card-footer">
 									<div class="legend"><i class="la la-circle text-primary"></i> Completed</div>
+								</div>-->
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="card">
+								<div class="card-header">
+									<h4 class="card-title">Navigation info</h4>									
+								</div>
+								<div class="card-body">									
+									<div class="card-body">
+										<div class="chart-circle mt-4 mb-3">
+											<div id="Motor1" class="mt-4 mb-3">
+												<p>Latitude: </p>
+												<p id="Latitude"></p>
+												<p>Longitude: </p>
+												<p id="Longitude"></p>
+												<p>Yaw: </p>
+												<p id="Yaw"></p>
+											</div>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -100,22 +123,8 @@
 						<div class="col-md-6">
 							<div class="card">
 								<div class="card-header">
-									<h4 class="card-title">Camara</h4>
-									<p class="card-category">Trasera</p>
-								</div>
-								<div class="card-body">
-									<div class="chart-circle mt-4 mb-3">
-										<img></img>
-											<p id="mensajeROS"></p>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="card">
-								<div class="card-header">
-									<h4 class="card-title">Bateria</h4>
-									<p class="card-category">Voltaje</p>
+									<h4 class="card-title">Velocity</h4>
+									<!--<p class="card-category">Trasera</p>-->
 								</div>
 								<div class="card-body">
 									<div class="chart-circle mt-4 mb-3">
@@ -123,12 +132,28 @@
 									</div>
 								</div>
 								<div class="card-footer">
-									<div class="legend"><i class="la la-circle text-primary"></i> Completed</div>
+									<div class="legend" id="trilladora_speed"><i class="la la-circle text-primary"></i> 0 m/s</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="card">
+								<div class="card-header">
+									<h4 class="card-title">Wheels_speed</h4>
+									<!--<p class="card-category">Voltaje</p>-->
+								</div>
+								<div class="card-body">
+									<div class="chart-circle mt-4 mb-3">
+										<canvas id="bateria" class="mt-4 mb-3"></canvas>
+									</div>
+								</div>
+								<div class="card-footer">
+									<div class="legend" id="wheel_speed"><i class="la la-circle text-primary"></i> 0 m/s</div>
 								</div>
 							</div>
 						</div>
 					</div>
-					<div class="row">
+					<!--<div class="row">
 						<div class="col-md-3">
 							<div class="card">
 								<div class="card-header">
@@ -146,7 +171,7 @@
 									</div>
 								</div>
 								<div class="card-footer">
-									<div class="legend"><i class="la la-circle text-primary"></i> Completed</div>
+									<div class="legend" id="wheel_speed"><i class="la la-circle text-primary"></i> Completed</div>
 								</div>
 							</div>
 						</div>
@@ -333,7 +358,7 @@
 								</div>
 							</div>
 						</div>
-					</div>
+					</div>-->
 
 				</div>
 			</div>

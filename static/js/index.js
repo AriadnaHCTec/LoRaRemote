@@ -18,7 +18,7 @@ ros = new ROSLIB.Ros({
 var listener_IMU = new ROSLIB.Topic({
   ros : ros,
   name : '/IMU',
-  messageType : 'std_msgs/String'
+  messageType : 'sensor_msgs/msg/NavSatFix'
 });
 
 listener_IMU.subscribe(function(message) {
