@@ -54,126 +54,127 @@
 					<li class="nav-item">
 						<a href="/">
 							<i class="la la-dashboard"></i>
-							<p>Dashboard</p>
+							<p>Navigation</p>
 						</a>
 					</li>
-					<li class="nav-item  active">
-						<a href="ciencias">
+					<li class="nav-item">
+						<a href="collect">
 							<i class="la la-flask"></i>
-							<p>Science</p>
+							<p>Collect</p>
 						</a>
-					</li>					
+					</li>
+					<li class="nav-item active">
+						<a href="check">
+							<i class="la la-flask"></i>
+							<p>check</p>
+						</a>
+					</li>
 				</ul>
 			</div>
 		</div>
 		<div class="main-panel">
 			<div class="content">
 				<div class="container-fluid">
-					<h4 class="page-title">Dashboard</h4>
+					<h4 class="page-title">CHECK</h4>
 					<div class="row">						
-					</div>
+						<div class="col-md-6">
+							<div class="card card-stats card-body">
+								<div class="card-header">
+									<h4 class="card-title">Fuel</h4>
+									<!--<p class="card-category">Complete</p>-->
+								</div>
+								<div class="row">
+									<div class="col-5">
+										<div class="icon-big text-center icon-warning">
+											<i class="la la-pie-chart text-warning"></i>
+										</div>
+									</div>
+									<div class="col-7 d-flex align-items-center">
+										<div class="numbers">
+											<p class="card-category">Fuel Level </p>
+											<h4 class="card-title">10</h4>
+										</div>
+									</div>
+								</div>
+								<hr/>
+								<div class="row">
+									<div class="col-5">
+										<div class="icon-big text-center">
+											<i class="la la-heart-o text-primary"></i>
+										</div>
+									</div>
+									<div class="col-7 d-flex align-items-center">
+										<div class="numbers">
+											<p class="card-category">Mileage</p>
+											<h4 class="card-title">1 KM</h4>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="card card-stats card-body">
+								<div class="card-header">
+									<h4 class="card-title">Others</h4>
+									<!--<p class="card-category">Complete</p>-->
+								</div>
+								<div class="row">
+									<div class="col-5">
+										<div class="icon-big text-center icon-warning">
+											<i class="la la-pie-chart text-warning"></i>
+										</div>
+									</div>
+									<div class="col-7 d-flex align-items-center">
+										<div class="numbers">
+											<p class="card-category">Oil Level</p>
+											<h4 class="card-title">110</h4>
+										</div>
+									</div>
+								</div>
+								<hr/>
+								<div class="row">
+									<div class="col-5">
+										<div class="icon-big text-center">
+											<i class="la la-heart-o text-primary"></i>
+										</div>
+									</div>
+									<div class="col-7 d-flex align-items-center">
+										<div class="numbers">
+											<p class="card-category">Wheel Pressure</p>
+											<h4 class="card-title">90%</h4>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>	
 					<div class="row">
 						<div class="col-md-6">
 							<div class="card">
 								<div class="card-header">
-									<h4 class="card-title">Camara</h4>
-									<p class="card-category">Zed</p>
+									<h4 class="card-title">STATUS</h4>
+									<!--<p class="card-category">Trasera</p>-->
 								</div>
 								<div class="card-body">
-									<div class="chart-circle mt-4 mb-3">
-										<img id="img" width="500" height="500" src ="http://34.204.181.137:8080/stream?topic=/usb_cam/image_raw&type=mjpeg&quality=60">	
+									<div class="alert alert-success">
+										<strong>Everything seems to work! :)</strong><!-- You should <a href="#" class="alert-link">read this message</a>-->
+									</div>
+									<div class="alert alert-info">
+										<strong>Info!</strong> You should <a href="#" class="alert-link">read this message</a>.
+									</div>
+									<div class="alert alert-warning">
+										<strong>Warning!</strong> You should <a href="#" class="alert-link">read this message</a>.
+									</div>
+									<div class="alert alert-danger">
+										<strong>Danger!</strong> You should <a href="#" class="alert-link">read this message</a>.
 									</div>
 								</div>
-								<div class="card-footer">
-									<div class="legend"><i class="la la-circle text-primary"></i> Completed</div>
-								</div>
+								<!--<div class="card-footer">
+									<div class="legend" id="trilladora_speed"><i class="la la-circle text-primary"></i> 0 m/s</div>
+								</div>-->
 							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="card">
-								<div class="card-header">
-									<h4 class="card-title">Camara</h4>
-									<p class="card-category">Trasera</p>
-								</div>
-								<div class="card-body">
-									<div class="chart-circle mt-4 mb-3">
-										<img id="img" width="500" height="500" src ="http://34.204.181.137:8080/stream?topic=/usb_cam/image_raw&type=mjpeg&quality=60">	
-									</div>
-								</div>
-								<div class="card-footer">
-									<div class="legend"><i class="la la-circle text-primary"></i> Completed</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-6">
-							<div class="card">
-								<div class="card-header">
-									<h4 class="card-title">Sensor 1</h4>
-									<p class="card-category">Un Sensor</p>
-								</div>
-								<div class="card-body">
-									<div class="chart-circle mt-4 mb-3">
-										<canvas id="Sensor1" class="mt-4 mb-3"></canvas>
-									</div>
-								</div>
-								<div class="card-footer">
-									<div class="legend"><i class="la la-circle text-primary"></i> Completed</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="card">
-								<div class="card-header">
-									<h4 class="card-title">Sensor 2</h4>
-									<p class="card-category">Un Sensor</p>
-								</div>
-								<div class="card-body">
-									<div class="chart-circle mt-4 mb-3">
-										<canvas id="Sensor2" class="mt-4 mb-3"></canvas>
-									</div>
-								</div>
-								<div class="card-footer">
-									<div class="legend"><i class="la la-circle text-primary"></i> Completed</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-6">
-							<div class="card">
-								<div class="card-header">
-									<h4 class="card-title">Sensor 3</h4>
-									<p class="card-category">Un Sensor</p>
-								</div>
-								<div class="card-body">
-									<div class="chart-circle mt-4 mb-3">
-										<canvas id="Sensor3" class="mt-4 mb-3"></canvas>
-									</div>
-								</div>
-								<div class="card-footer">
-									<div class="legend"><i class="la la-circle text-primary"></i> Completed</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="card">
-								<div class="card-header">
-									<h4 class="card-title">Video</h4>
-									<p class="card-category">Ciencias</p>
-								</div>
-								<div class="card-body">
-									<div class="chart-circle mt-4 mb-3">
-										<canvas id="canvas2" class="mt-4 mb-3"></canvas>
-									</div>
-								</div>
-								<div class="card-footer">
-									<div class="legend"><i class="la la-circle text-primary"></i> Completed</div>
-								</div>
-							</div>
-						</div>
-					</div>
+						</div>						
+					</div>				
 				</div>
 			</div>
 		</div>

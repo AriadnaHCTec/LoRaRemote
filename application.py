@@ -25,9 +25,9 @@ def index():
 def collect():
     return render_template('collect.html')
 
-@application.route('/checking')
+@application.route('/check')
 def checking():
-    return render_template('checking.html')
+    return render_template('check.html')
 
 @application.route('/data_sensor1')
 def data_sensor1():
