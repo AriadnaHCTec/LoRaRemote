@@ -11,10 +11,12 @@
 		href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
 	<link rel="stylesheet" href="{{url_for('static', filename='css/ready.css')}}">
 	<link rel="stylesheet" href="{{url_for('static', filename='css/demo.css')}}">
-	<script src="http://bernii.github.io/gauge.js/dist/gauge.min.js"></script>
-	<script src="{{url_for('static', filename='js/core/jquery.min.js')}}"></script>
-	<script src="{{url_for('static', filename='js/core/bootstrapC.min.js')}}"></script>
-	<script src="{{url_for('static', filename='js/core/Chart.min.js')}}"></script>
+	<!--	<script src="http://bernii.github.io/gauge.js/dist/gauge.min.js"></script>-->
+	<script src="https://static.robotwebtools.org/roslibjs/current/roslib.min.js"></script>
+	<script src="https://static.robotwebtools.org/EventEmitter2/current/eventemitter2.min.js"></script>
+	<script src="https://static.robotwebtools.org/keyboardteleopjs/current/keyboardteleop.min.js"></script>
+	<script src="//yoannmoinet.github.io/nipplejs/javascripts/nipplejs.js"></script>
+		<script src="{{url_for('static', filename='js/plugin/gauge.min.js')}}"></script>
 </head>
 
 <body>
@@ -92,7 +94,7 @@
 									<div class="col-7 d-flex align-items-center">
 										<div class="numbers">
 											<p class="card-category">Fuel Level </p>
-											<h4 class="card-title">10</h4>
+											<h4 class="card-title" id="fuel_level">10</h4>
 										</div>
 									</div>
 								</div>
@@ -106,7 +108,7 @@
 									<div class="col-7 d-flex align-items-center">
 										<div class="numbers">
 											<p class="card-category">Mileage</p>
-											<h4 class="card-title">1 KM</h4>
+											<h4 class="card-title"><span id="mileage">10</span>KM</h4>
 										</div>
 									</div>
 								</div>
@@ -127,7 +129,7 @@
 									<div class="col-7 d-flex align-items-center">
 										<div class="numbers">
 											<p class="card-category">Oil Level</p>
-											<h4 class="card-title">110</h4>
+											<h4 class="card-title" id="oil_level">110</h4>
 										</div>
 									</div>
 								</div>
@@ -141,7 +143,7 @@
 									<div class="col-7 d-flex align-items-center">
 										<div class="numbers">
 											<p class="card-category">Wheel Pressure</p>
-											<h4 class="card-title">90%</h4>
+											<h4 class="card-title"><span id="wheel_pressure"">90</span>%</h4>
 										</div>
 									</div>
 								</div>
@@ -156,17 +158,23 @@
 									<!--<p class="card-category">Trasera</p>-->
 								</div>
 								<div class="card-body">
-									<div class="alert alert-success">
+									<div class="alert alert-success" id="ok">
 										<strong>Everything seems to work! :)</strong><!-- You should <a href="#" class="alert-link">read this message</a>-->
 									</div>
-									<div class="alert alert-info">
+									<!--<div class="alert alert-info">
 										<strong>Info!</strong> You should <a href="#" class="alert-link">read this message</a>.
 									</div>
 									<div class="alert alert-warning">
 										<strong>Warning!</strong> You should <a href="#" class="alert-link">read this message</a>.
+									</div>-->
+									<div class="alert alert-danger" id="fuel_level_danger" style="display:none">
+										Fuel level extremely low.
 									</div>
-									<div class="alert alert-danger">
-										<strong>Danger!</strong> You should <a href="#" class="alert-link">read this message</a>.
+									<div class="alert alert-danger" id="oil_level_danger" style="display:none">
+										Oil level extremely low.
+									</div>
+									<div class="alert alert-danger" id="wheel_pressure_danger" style="display:none">
+										Wheel Pressure extremely low.
 									</div>
 								</div>
 								<!--<div class="card-footer">
@@ -180,9 +188,9 @@
 		</div>
 	</div>
 	</div>
-	<script src="{{url_for('static', filename='js/plugin/ciencias.js')}}"></script>
 </body>
 
+<script src="{{url_for('static', filename='js/ROSManager.js')}}"></script>
 <script src="{{url_for('static', filename='js/core/jquery.3.2.1.min.js')}}"></script>
 <script src="{{url_for('static', filename='js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js')}}"></script>
 <script src="{{url_for('static', filename='js/core/popper.min.js')}}"></script>
@@ -197,5 +205,6 @@
 <script src="{{url_for('static', filename='js/plugin/jquery-scrollbar/jquery.scrollbar.min.js')}}"></script>
 <script src="{{url_for('static', filename='js/ready.min.js')}}"></script>
 <script src="{{url_for('static', filename='js/demo.js')}}"></script>
+<script src="{{url_for('static', filename='js/check.js')}}"></script>
 
 </html>

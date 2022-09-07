@@ -1,4 +1,4 @@
-var opts = {
+/*var opts = {
   angle: 0, // The span of the gauge arc
   lineWidth: 0.2, // The line thickness
   radiusScale: 1, // Relative radius
@@ -27,9 +27,9 @@ var opts = {
     color: "#000000",  // Optional: Label text color
     fractionDigits: 0  // Optional: Numerical precision. 0=round off.
   },
-};
+};*/
 
-var target = document.getElementById('bateria'); // your canvas element
+/*var target = document.getElementById('bateria'); // your canvas element
 var gauge = new Gauge(target).setOptions(opts); // create sexy gauge!
 gauge.maxValue = 13; // set max gauge value
 gauge.minValue = 7.1;
@@ -41,6 +41,6 @@ const source = new EventSource("/data_bateria");
 source.onmessage = function (event) {
   const data = JSON.parse(event.data);
   gauge.set(7 + data.value);
-}
+}*/
 
 //<!--<img style="width:100%;height: 100%;" id="bg" src="{{ url_for('video_feeder') }}">-->

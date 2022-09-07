@@ -11,10 +11,12 @@
 		href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
 	<link rel="stylesheet" href="{{url_for('static', filename='css/ready.css')}}">
 	<link rel="stylesheet" href="{{url_for('static', filename='css/demo.css')}}">
-	<script src="http://bernii.github.io/gauge.js/dist/gauge.min.js"></script>
-	<script src="{{url_for('static', filename='js/core/jquery.min.js')}}"></script>
-	<script src="{{url_for('static', filename='js/core/bootstrapC.min.js')}}"></script>
-	<script src="{{url_for('static', filename='js/core/Chart.min.js')}}"></script>
+<!--	<script src="http://bernii.github.io/gauge.js/dist/gauge.min.js"></script>-->
+<script src="https://static.robotwebtools.org/roslibjs/current/roslib.min.js"></script>
+<script src="https://static.robotwebtools.org/EventEmitter2/current/eventemitter2.min.js"></script>
+<script src="https://static.robotwebtools.org/keyboardteleopjs/current/keyboardteleop.min.js"></script>
+<script src="//yoannmoinet.github.io/nipplejs/javascripts/nipplejs.js"></script>
+	<script src="{{url_for('static', filename='js/plugin/gauge.min.js')}}"></script>
 </head>
 
 <body>
@@ -76,8 +78,6 @@
 			<div class="content">
 				<div class="container-fluid">
 					<h4 class="page-title">Collect</h4>
-					<div class="row">						
-					</div>
 					<div class="row">
 						<div class="col-md-6">
 							<div class="card">
@@ -89,7 +89,7 @@
 									<div id="task-complete" class="chart-circle mt-4 mb-3"></div>
 								</div>
 								<div class="card-footer">
-									<div class="legend"><i class="la la-circle text-primary"></i> 80%</div>
+									<div class="legend"><i class="la la-circle text-primary"></i><span id="fill_txt">80</span>%</div>
 								</div>
 							</div>
 						</div>
@@ -107,8 +107,8 @@
 									</div>
 									<div class="col-7 d-flex align-items-center">
 										<div class="numbers">
-											<p class="card-category">Along the day </p>
-											<h4 class="card-title">150KG</h4>
+											<p class="card-category">Kilograms</p>
+											<h4 class="card-title"><span id="kilograms_txt">150</span>KG</h4>
 										</div>
 									</div>
 								</div>
@@ -121,7 +121,7 @@
 									</div>
 									<div class="col-7 d-flex align-items-center">
 										<div class="numbers">
-											<p class="card-category">Along the week</p>
+											<p class="card-category">Along the day</p>
 											<h4 class="card-title">200000 KG</h4>
 										</div>
 									</div>
@@ -152,9 +152,9 @@
 		</div>
 	</div>
 	</div>
-	<script src="{{url_for('static', filename='js/plugin/ciencias.js')}}"></script>
 </body>
 
+<script src="{{url_for('static', filename='js/ROSManager.js')}}"></script>
 <script src="{{url_for('static', filename='js/core/jquery.3.2.1.min.js')}}"></script>
 <script src="{{url_for('static', filename='js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js')}}"></script>
 <script src="{{url_for('static', filename='js/core/popper.min.js')}}"></script>
@@ -168,6 +168,7 @@
 <script src="{{url_for('static', filename='js/plugin/chart-circle/circles.min.js')}}"></script>
 <script src="{{url_for('static', filename='js/plugin/jquery-scrollbar/jquery.scrollbar.min.js')}}"></script>
 <script src="{{url_for('static', filename='js/ready.min.js')}}"></script>
-<script src="{{url_for('static', filename='js/demo.js')}}"></script>
+<!--<script src="{{url_for('static', filename='js/demo.js')}}"></script>-->
+<script src="{{url_for('static', filename='js/collect.js')}}"></script>
 
 </html>

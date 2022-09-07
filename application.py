@@ -29,7 +29,7 @@ def collect():
 def checking():
     return render_template('check.html')
 
-@application.route('/data_sensor1')
+"""@application.route('/data_sensor1')
 def data_sensor1():
     def generate_random_data():
         while True:
@@ -60,17 +60,6 @@ def data_sensor3():
             yield f"data:{json_data}\n\n"
             time.sleep(1)
 
-    return Response(generate_random_data(), mimetype='text/event-stream')
-
-@application.route('/data_bateria')
-def data_bateria():
-    def generate_random_data():
-        while True:
-            json_data = json.dumps(
-                {'time': datetime.now().strftime('%M:%S'), 'value': random.random() * 6})
-            yield f"data:{json_data}\n\n"
-            time.sleep(30)
-
-    return Response(generate_random_data(), mimetype='text/event-stream')
+    return Response(generate_random_data(), mimetype='text/event-stream')"""
 
 application.run(debug=True, threaded=True, host='0.0.0.0')
