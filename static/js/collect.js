@@ -8,12 +8,120 @@ Modified (DD/MM/YY):
 
 
 var ros;
-var robot_IP="localhost";
+var robot_IP="192.168.1.147";
 
 ros = new ROSLIB.Ros({
     url: "ws://" + robot_IP + ":9090"
 });
 
+
+
+const configSensor1 = {
+    type: 'line',
+    data: {
+        labels: [],
+        datasets: [{
+            label: "Kilograms during the year",
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: [],
+            fill: false,
+        }],
+    },
+    options: {
+        responsive: true,
+        title: {
+            display: false,
+            text: ''
+        },
+        tooltips: {
+            mode: 'index',
+            intersect: false,
+        },
+        hover: {
+            mode: 'nearest',
+            intersect: true
+        },
+        scales: {
+            xAxes: [{
+                display: true,
+                scaleLabel: {
+                    display: true,
+                    labelString: 'Month'
+                }
+            }],
+            yAxes: [{
+                display: true,
+                scaleLabel: {
+                    display: true,
+                    labelString: 'Kilograms'
+                }
+            }]
+        }
+    }
+};
+
+
+const configFilled = {
+    type: 'line',
+    data: {
+        labels: [],
+        datasets: [{
+            label: "Filled",
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: [],
+            fill: false,
+        }],
+    },
+    options: {
+        responsive: true,
+        title: {
+            display: false,
+            text: ''
+        },
+        tooltips: {
+            mode: 'index',
+            intersect: false,
+        },
+        hover: {
+            mode: 'nearest',
+            intersect: true
+        },
+        scales: {
+            xAxes: [{
+                display: true,
+                scaleLabel: {
+                    display: true,
+                    labelString: 'Time'
+                }
+            }],
+            yAxes: [{
+                display: true,
+                scaleLabel: {
+                    display: true,
+                    labelString: 'Percentage'
+                }
+            }]
+        }
+    }
+};
+const contextS1 = document.getElementById('Sensor1').getContext('2d');
+const lineChartS1 = new Chart(contextS1, configSensor1);
+
+const contextS2 = document.getElementById('filled_graph').getContext('2d');
+const lineChartS2 = new Chart(contextS2, configFilled);
+/*const sourceS1 = new EventSource("/data_sensor1");
+sourceS1.onmessage = function (event) {
+    const data = JSON.parse(event.data);
+    if (configSensor1.data.labels.length === 30) {
+        configSensor1.data.labels.shift();
+        configSensor1.data.datasets[0].data.shift();
+    }
+    configSensor1.data.labels.push(data.time);
+    configSensor1.data.datasets[0].data.push(data.value);
+    lineChartS1.update();
+}*/
 
 Circles.create({
     id:           'task-complete',
@@ -51,7 +159,15 @@ var listener_fill = new ROSLIB.Topic({
         textClass:    'circles-text',
         styleWrapper: true,
         styleText:    true
-    })
+    });
+
+    if (configSensor2.data.labels.length === 30) {
+        configSensor2.data.labels.shift();
+        configSensor2.data.datasets[0].data.shift();
+    }
+    configSensor2.data.labels.push("23:00");
+    configSensor2.data.datasets[0].data.push(message.data);
+    lineChartS2.update();
   });
   
   var listener_kilos = new ROSLIB.Topic({
@@ -62,4 +178,11 @@ var listener_fill = new ROSLIB.Topic({
   
   listener_kilos.subscribe(function(message) {
     document.getElementById("kilograms_txt").innerHTML = message.data;
+    if (configSensor1.data.labels.length === 30) {
+        configSensor1.data.labels.shift();
+        configSensor1.data.datasets[0].data.shift();
+    }
+    configSensor1.data.labels.push("23:00");
+    configSensor1.data.datasets[0].data.push(message.data);
+    lineChartS1.update();
   });

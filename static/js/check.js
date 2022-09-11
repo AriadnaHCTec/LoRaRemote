@@ -8,7 +8,7 @@ Modified (DD/MM/YY):
 
 
 var ros;
-var robot_IP="localhost";
+var robot_IP="192.168.1.147";
 
 ros = new ROSLIB.Ros({
     url: "ws://" + robot_IP + ":9090"

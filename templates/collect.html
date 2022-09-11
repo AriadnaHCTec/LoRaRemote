@@ -17,6 +17,11 @@
 <script src="https://static.robotwebtools.org/keyboardteleopjs/current/keyboardteleop.min.js"></script>
 <script src="//yoannmoinet.github.io/nipplejs/javascripts/nipplejs.js"></script>
 	<script src="{{url_for('static', filename='js/plugin/gauge.min.js')}}"></script>
+	
+	<script src="http://bernii.github.io/gauge.js/dist/gauge.min.js"></script>
+	<script src="{{url_for('static', filename='js/core/jquery.min.js')}}"></script>
+	<script src="{{url_for('static', filename='js/core/bootstrapC.min.js')}}"></script>
+	<script src="{{url_for('static', filename='js/core/Chart.min.js')}}"></script>
 </head>
 
 <body>
@@ -55,19 +60,19 @@
 				<ul class="nav">
 					<li class="nav-item">
 						<a href="/">
-							<i class="la la-dashboard"></i>
+							<i class="la la-map-marker"></i>
 							<p>Navigation</p>
 						</a>
 					</li>
 					<li class="nav-item active">
 						<a href="collect">
-							<i class="la la-flask"></i>
+							<i class="la la-wrench"></i>
 							<p>Collect</p>
 						</a>
 					</li>
 					<li class="nav-item">
 						<a href="check">
-							<i class="la la-flask"></i>
+							<i class="la la-dashboard"></i>
 							<p>check</p>
 						</a>
 					</li>
@@ -102,7 +107,7 @@
 								<div class="row">
 									<div class="col-5">
 										<div class="icon-big text-center icon-warning">
-											<i class="la la-pie-chart text-warning"></i>
+											<img src="{{url_for('static', filename='img/kg_icon.jpeg')}}" width="20%">
 										</div>
 									</div>
 									<div class="col-7 d-flex align-items-center">
@@ -116,7 +121,8 @@
 								<div class="row">
 									<div class="col-5">
 										<div class="icon-big text-center">
-											<i class="la la-heart-o text-primary"></i>
+											<!--<i class="la la-heart-o text-primary"></i>-->
+											<img src="{{url_for('static', filename='img/time_icon.jpeg')}}" width="20%">
 										</div>
 									</div>
 									<div class="col-7 d-flex align-items-center">
@@ -146,6 +152,23 @@
 								</div>-->
 							</div>
 						</div>						
+
+						<div class="col-md-6">
+							<div class="card">
+								<div class="card-header">
+									<h4 class="card-title">Filled</h4>
+									<!--<p class="card-category">Un Sensor</p>-->
+								</div>
+								<div class="card-body">
+									<div class="chart-circle mt-4 mb-3">
+										<canvas id="filled_graph" class="mt-4 mb-3"></canvas>
+									</div>
+								</div>
+								<!--<div class="card-footer">
+									<div class="legend"><i class="la la-circle text-primary"></i> Completed</div>
+								</div>-->
+							</div>
+						</div>						
 					</div>					
 				</div>
 			</div>
@@ -168,7 +191,7 @@
 <script src="{{url_for('static', filename='js/plugin/chart-circle/circles.min.js')}}"></script>
 <script src="{{url_for('static', filename='js/plugin/jquery-scrollbar/jquery.scrollbar.min.js')}}"></script>
 <script src="{{url_for('static', filename='js/ready.min.js')}}"></script>
-<!--<script src="{{url_for('static', filename='js/demo.js')}}"></script>-->
+<script src="{{url_for('static', filename='js/demo.js')}}"></script>
 <script src="{{url_for('static', filename='js/collect.js')}}"></script>
 
 </html>

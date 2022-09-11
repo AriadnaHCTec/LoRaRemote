@@ -55,19 +55,19 @@
 				<ul class="nav">
 					<li class="nav-item">
 						<a href="/">
-							<i class="la la-dashboard"></i>
+							<i class="la la-map-marker"></i>
 							<p>Navigation</p>
 						</a>
 					</li>
 					<li class="nav-item">
 						<a href="collect">
-							<i class="la la-flask"></i>
+							<i class="la la-wrench"></i>
 							<p>Collect</p>
 						</a>
 					</li>
 					<li class="nav-item active">
 						<a href="check">
-							<i class="la la-flask"></i>
+							<i class="la la-dashboard"></i>
 							<p>check</p>
 						</a>
 					</li>
@@ -88,7 +88,7 @@
 								<div class="row">
 									<div class="col-5">
 										<div class="icon-big text-center icon-warning">
-											<i class="la la-pie-chart text-warning"></i>
+											<img src="{{url_for('static', filename='img/fuel_icon.jpeg')}}" width="20%">
 										</div>
 									</div>
 									<div class="col-7 d-flex align-items-center">
@@ -102,7 +102,7 @@
 								<div class="row">
 									<div class="col-5">
 										<div class="icon-big text-center">
-											<i class="la la-heart-o text-primary"></i>
+											<img src="{{url_for('static', filename='img/mileage_icon.jpeg')}}" width="20%">
 										</div>
 									</div>
 									<div class="col-7 d-flex align-items-center">
@@ -117,13 +117,13 @@
 						<div class="col-md-6">
 							<div class="card card-stats card-body">
 								<div class="card-header">
-									<h4 class="card-title">Others</h4>
+									<h4 class="card-title">Engine</h4>
 									<!--<p class="card-category">Complete</p>-->
 								</div>
 								<div class="row">
 									<div class="col-5">
 										<div class="icon-big text-center icon-warning">
-											<i class="la la-pie-chart text-warning"></i>
+											<img src="{{url_for('static', filename='img/oil_icon.jpeg')}}" width="20%">
 										</div>
 									</div>
 									<div class="col-7 d-flex align-items-center">
@@ -137,7 +137,7 @@
 								<div class="row">
 									<div class="col-5">
 										<div class="icon-big text-center">
-											<i class="la la-heart-o text-primary"></i>
+											<img src="{{url_for('static', filename='img/pressure_icon.jpeg')}}" width="20%">
 										</div>
 									</div>
 									<div class="col-7 d-flex align-items-center">
@@ -161,12 +161,6 @@
 									<div class="alert alert-success" id="ok">
 										<strong>Everything seems to work! :)</strong><!-- You should <a href="#" class="alert-link">read this message</a>-->
 									</div>
-									<!--<div class="alert alert-info">
-										<strong>Info!</strong> You should <a href="#" class="alert-link">read this message</a>.
-									</div>
-									<div class="alert alert-warning">
-										<strong>Warning!</strong> You should <a href="#" class="alert-link">read this message</a>.
-									</div>-->
 									<div class="alert alert-danger" id="fuel_level_danger" style="display:none">
 										Fuel level extremely low.
 									</div>
