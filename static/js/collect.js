@@ -111,17 +111,17 @@ const lineChartS1 = new Chart(contextS1, configSensor1);
 
 const contextS2 = document.getElementById('filled_graph').getContext('2d');
 const lineChartS2 = new Chart(contextS2, configFilled);
-/*const sourceS1 = new EventSource("/data_sensor1");
+
+const sourceS1 = new EventSource("/data_sensor1");
 sourceS1.onmessage = function (event) {
-    const data = JSON.parse(event.data);
-    if (configSensor1.data.labels.length === 30) {
-        configSensor1.data.labels.shift();
-        configSensor1.data.datasets[0].data.shift();
+    const data = JSON.parse(event.data);    
+    if (configSensor1.data.labels.length < 6) {
+        configSensor1.data.labels.push(data.time);
+        configSensor1.data.datasets[0].data.push(data.value);
+        lineChartS1.update();
     }
-    configSensor1.data.labels.push(data.time);
-    configSensor1.data.datasets[0].data.push(data.value);
-    lineChartS1.update();
-}*/
+    
+}
 
 Circles.create({
     id:           'task-complete',
@@ -159,15 +159,7 @@ var listener_fill = new ROSLIB.Topic({
         textClass:    'circles-text',
         styleWrapper: true,
         styleText:    true
-    });
-
-    if (configSensor2.data.labels.length === 30) {
-        configSensor2.data.labels.shift();
-        configSensor2.data.datasets[0].data.shift();
-    }
-    configSensor2.data.labels.push("23:00");
-    configSensor2.data.datasets[0].data.push(message.data);
-    lineChartS2.update();
+    });    
   });
   
   var listener_kilos = new ROSLIB.Topic({
@@ -178,11 +170,11 @@ var listener_fill = new ROSLIB.Topic({
   
   listener_kilos.subscribe(function(message) {
     document.getElementById("kilograms_txt").innerHTML = message.data;
-    if (configSensor1.data.labels.length === 30) {
-        configSensor1.data.labels.shift();
-        configSensor1.data.datasets[0].data.shift();
+    if (configSensor2.data.labels.length === 30) {
+        configSensor2.data.labels.shift();
+        configSensor2.data.datasets[0].data.shift();
     }
-    configSensor1.data.labels.push("23:00");
-    configSensor1.data.datasets[0].data.push(message.data);
-    lineChartS1.update();
+    configSensor2.data.labels.push("23:00");
+    configSensor2.data.datasets[0].data.push(message.data);
+    lineChartS2.update();
   });
