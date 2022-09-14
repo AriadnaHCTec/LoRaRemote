@@ -12,6 +12,7 @@ import time
 from datetime import datetime
 
 import mysql.connector
+import pandas as pd 
 
 from flask import Flask, Response, render_template
 application = Flask(__name__, static_url_path='/static')
@@ -46,5 +47,24 @@ def data_bateria():
             yield f"data:{json_data}\n\n"
 
     return Response(generate_json(), mimetype='text/event-stream')
+
+@application.route('/download')
+def download():    
+
+    mydb = mysql.connector.connect(
+    host="localhost",
+    user="root",
+    password="",
+    database="Helgen",
+    use_pure=True
+    )
+    mycursor = mydb.cursor()
+    df = pd.read_sql("SELECT * FROM Collect",mydb)
+    print(df)
+    return Response(
+       df.to_csv(),
+       mimetype="text/csv",
+       headers={"Content-disposition":
+       "attachment; filename=database.csv"})
 
 application.run(debug=True, threaded=True, host='0.0.0.0')

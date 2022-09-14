@@ -18,7 +18,8 @@
 	<script src="https://static.robotwebtools.org/EventEmitter2/current/eventemitter2.min.js"></script>
 	<script src="https://static.robotwebtools.org/keyboardteleopjs/current/keyboardteleop.min.js"></script>
 	<script src="//yoannmoinet.github.io/nipplejs/javascripts/nipplejs.js"></script>
-		<script src="{{url_for('static', filename='js/plugin/gauge.min.js')}}"></script>
+	<script src="{{url_for('static', filename='js/plugin/gauge.min.js')}}"></script>
+	<script src="{{url_for('static', filename='js/core/Chart.min.js')}}"></script>
 </head>
 
 <body>
@@ -187,7 +188,23 @@
 									<div class="legend" id="trilladora_speed"><i class="la la-circle text-primary"></i> 0 m/s</div>
 								</div>-->
 							</div>
-						</div>						
+						</div>	
+						<div class="col-md-6">
+							<div class="card">
+								<div class="card-header">
+									<h4 class="card-title">Temperature</h4>
+									<!--<p class="card-category">Un Sensor</p>-->
+								</div>
+								<div class="card-body">
+									<div class="chart-circle mt-4 mb-3">
+										<canvas id="temperature_graph" class="mt-4 mb-3"></canvas>
+									</div>
+								</div>
+								<!--<div class="card-footer">
+									<div class="legend"><i class="la la-circle text-primary"></i> Completed</div>
+								</div>-->
+							</div>
+						</div>					
 					</div>				
 				</div>
 			</div>

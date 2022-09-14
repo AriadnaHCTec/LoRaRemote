@@ -24,6 +24,50 @@
 	<script src="{{url_for('static', filename='js/core/jquery.min.js')}}"></script>
 	<script src="{{url_for('static', filename='js/core/bootstrapC.min.js')}}"></script>
 	<script src="{{url_for('static', filename='js/core/Chart.min.js')}}"></script>
+
+	<style>
+		#snackbar {
+		  visibility: hidden;
+		  min-width: 250px;
+		  margin-left: -125px;
+		  background-color: #333;
+		  color: #fff;
+		  text-align: center;
+		  border-radius: 2px;
+		  padding: 16px;
+		  position: fixed;
+		  z-index: 1;
+		  left: 50%;
+		  bottom: 30px;
+		  font-size: 17px;
+		}
+		
+		#snackbar.show {
+		  visibility: visible;
+		  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+		  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+		}
+		
+		@-webkit-keyframes fadein {
+		  from {bottom: 0; opacity: 0;} 
+		  to {bottom: 30px; opacity: 1;}
+		}
+		
+		@keyframes fadein {
+		  from {bottom: 0; opacity: 0;}
+		  to {bottom: 30px; opacity: 1;}
+		}
+		
+		@-webkit-keyframes fadeout {
+		  from {bottom: 30px; opacity: 1;} 
+		  to {bottom: 0; opacity: 0;}
+		}
+		
+		@keyframes fadeout {
+		  from {bottom: 30px; opacity: 1;}
+		  to {bottom: 0; opacity: 0;}
+		}
+		</style>
 </head>
 
 <body>
@@ -141,17 +185,13 @@
 						<div class="col-md-6">
 							<div class="card">
 								<div class="card-header">
-									<h4 class="card-title">Kilograms processed along the year</h4>
-									<!--<p class="card-category">Un Sensor</p>-->
+									<h4 class="card-title">Kilograms processed along the year<a ><button class="btn btn-danger" style="float: right;" data-toggle="modal" data-toggle="modal" data-target="#exampleModal">Download info</button></a></h4> <!--href="download"-->
 								</div>
 								<div class="card-body">
 									<div class="chart-circle mt-4 mb-3">
 										<canvas id="Sensor1" class="mt-4 mb-3"></canvas>
 									</div>
 								</div>
-								<!--<div class="card-footer">
-									<div class="legend"><i class="la la-circle text-primary"></i> Completed</div>
-								</div>-->
 							</div>
 						</div>						
 
@@ -176,7 +216,29 @@
 			</div>
 		</div>
 	</div>
+	
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+	  <div class="modal-content">
+		<div class="modal-header">
+		  <h5 class="modal-title" id="exampleModalLabel">Password required</h5>
+		  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		  </button>
+		</div>
+		<div class="modal-body">
+			<input type="password" class="form-control" id="password_download" placeholder="Password">
+		</div>
+		<div class="modal-footer">
+		  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		  <button type="button" class="btn btn-primary" onclick="download()" data-dismiss="modal">Submit</button>
+		</div>
+	  </div>
 	</div>
+  </div>
+  <div id="snackbar">Wrong password...</div>
+  <a href="/download" download id="download_a" hidden></a>
 </body>
 
 <script src="{{url_for('static', filename='js/ROSManager.js')}}"></script>

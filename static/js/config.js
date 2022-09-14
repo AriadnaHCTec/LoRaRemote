@@ -1,3 +1,3 @@
 _config = {
-    ROSBridge_IP : "192.168.1.90", //ROSBridge server IP    
+    ROSBridge_IP : "10.48.78.84", //ROSBridge server IP    
 }

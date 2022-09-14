@@ -13,16 +13,63 @@ ros = new ROSLIB.Ros({
     url: "ws://" + robot_IP + ":9090"
 });
 
+const configTemp = {
+  type: 'line',
+  data: {
+      labels: [],
+      datasets: [{
+          label: "Temperature",
+          backgroundColor: 'rgb(255, 99, 132)',
+          borderColor: 'rgb(255, 99, 132)',
+          data: [],
+          fill: false,
+      }],
+  },
+  options: {
+      responsive: true,
+      title: {
+          display: false,
+          text: ''
+      },
+      tooltips: {
+          mode: 'index',
+          intersect: false,
+      },
+      hover: {
+          mode: 'nearest',
+          intersect: true
+      },
+      scales: {
+          xAxes: [{
+              display: true,
+              scaleLabel: {
+                  display: true,
+                  labelString: 'Time'
+              }
+          }],
+          yAxes: [{
+              display: true,
+              scaleLabel: {
+                  display: true,
+                  labelString: '°C'
+              }
+          }]
+      }
+  }
+};
+const contextS2 = document.getElementById('temperature_graph').getContext('2d');
+const lineChartS2 = new Chart(contextS2, configTemp);
+
 var fuel = false;
 var oil = false;
 var wheel = false;
 var ok = true;
 
 var listener_fuel_level = new ROSLIB.Topic({
-    ros : ros,
-    name : '/fuel_level',
-    messageType : 'std_msgs/Int32'
-  });
+  ros : ros,
+  name : '/fuel_level',
+  messageType : 'std_msgs/Int32'
+});
   
 
   var displayed = false;
@@ -160,6 +207,22 @@ var listener_fuel_level = new ROSLIB.Topic({
       document.getElementById("ok").style.display = "none";
     }else{
       document.getElementById("ok").style.display= "";        
-    }
-    
+    } 
+}
+
+var listener_temperature = new ROSLIB.Topic({
+  ros : ros,
+  name : '/temperature',
+  messageType : 'std_msgs/Int32'
+});
+
+listener_temperature.subscribe(function(message) {
+  if (configTemp.data.labels.length === 5) {
+    configTemp.data.labels.shift();
+    configTemp.data.datasets[0].data.shift();
   }
+  configTemp.data.labels.push("23:00");
+  configTemp.data.datasets[0].data.push(message.data);
+  lineChartS2.update();
+
+});

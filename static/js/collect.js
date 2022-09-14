@@ -162,7 +162,7 @@ var listener_fill = new ROSLIB.Topic({
         styleText:    true
     });    
 
-    if (configFilled.data.labels.length === 5) {
+  if (configFilled.data.labels.length === 5) {
         configFilled.data.labels.shift();
         configFilled.data.datasets[0].data.shift();
     }
@@ -260,3 +260,18 @@ var listener_fill = new ROSLIB.Topic({
         }
     }
   });
+
+
+function download() {
+  var pass = document.getElementById('password_download').value;
+  console.log(pass);
+  if(pass === "Helgen")
+    document.getElementById('download_a').click();
+  else{
+    var x = document.getElementById("snackbar");
+    // Add the "show" class to DIV
+    x.className = "show";
+    // After 3 seconds, remove the show class from DIV
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+  }    
+}
