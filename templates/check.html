@@ -13,6 +13,7 @@
 	<link rel="stylesheet" href="{{url_for('static', filename='css/ready.css')}}">
 	<link rel="stylesheet" href="{{url_for('static', filename='css/demo.css')}}">
 	<!--	<script src="http://bernii.github.io/gauge.js/dist/gauge.min.js"></script>-->
+	<script src="{{url_for('static', filename='js/config.js')}}"></script>
 	<script src="https://static.robotwebtools.org/roslibjs/current/roslib.min.js"></script>
 	<script src="https://static.robotwebtools.org/EventEmitter2/current/eventemitter2.min.js"></script>
 	<script src="https://static.robotwebtools.org/keyboardteleopjs/current/keyboardteleop.min.js"></script>
@@ -95,7 +96,7 @@
 									<div class="col-7 d-flex align-items-center">
 										<div class="numbers">
 											<p class="card-category">Fuel Level </p>
-											<h4 class="card-title" id="fuel_level">10</h4>
+											<h4 class="card-title"><span id="fuel_level">100</span> %</h4>
 										</div>
 									</div>
 								</div>
@@ -109,7 +110,7 @@
 									<div class="col-7 d-flex align-items-center">
 										<div class="numbers">
 											<p class="card-category">Mileage</p>
-											<h4 class="card-title"><span id="mileage">10</span>KM</h4>
+											<h4 class="card-title"><span id="mileage">10</span> KM</h4>
 										</div>
 									</div>
 								</div>
@@ -130,7 +131,7 @@
 									<div class="col-7 d-flex align-items-center">
 										<div class="numbers">
 											<p class="card-category">Oil Level</p>
-											<h4 class="card-title" id="oil_level">110</h4>
+											<h4 class="card-title"> <span id="oil_level">100</span> %</h4>
 										</div>
 									</div>
 								</div>
@@ -144,7 +145,7 @@
 									<div class="col-7 d-flex align-items-center">
 										<div class="numbers">
 											<p class="card-category">Wheel Pressure</p>
-											<h4 class="card-title"><span id="wheel_pressure"">90</span>%</h4>
+											<h4 class="card-title"><span id="wheel_pressure">90</span> %</h4>
 										</div>
 									</div>
 								</div>
@@ -170,6 +171,16 @@
 									</div>
 									<div class="alert alert-danger" id="wheel_pressure_danger" style="display:none">
 										Wheel Pressure extremely low.
+									</div>
+									
+									<div class="alert alert-warning" id="fuel_level_warning" style="display:none">
+										Fuel level low.
+									</div>
+									<div class="alert alert-warning" id="oil_level_warning" style="display:none">
+										Oil level low.
+									</div>
+									<div class="alert alert-warning" id="wheel_pressure_warning" style="display:none">
+										Wheel Pressure low.
 									</div>
 								</div>
 								<!--<div class="card-footer">

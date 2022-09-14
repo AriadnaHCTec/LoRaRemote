@@ -8,7 +8,7 @@ Modified (DD/MM/YY):
 
 
 var ros;
-var robot_IP="192.168.1.147";
+var robot_IP=_config.ROSBridge_IP;
 
 ros = new ROSLIB.Ros({
     url: "ws://" + robot_IP + ":9090"
@@ -60,9 +60,9 @@ var opts2 = {
   generateGradient: true,
   highDpiSupport: true,     // High resolution support
   staticZones: [
-      {strokeStyle: "#00FF00", min: 0.0, max: 80.0}, // Red from 100 to 60
-      {strokeStyle: "#FFFF00", min: 80.0, max: 110.0}, // Yellow
-      {strokeStyle: "#FF0000", min: 110.0, max: 150.0}, // Green
+      {strokeStyle: "#00EF00", min: 0.0, max: 80.0}, // Red from 100 to 60
+      {strokeStyle: "#EFFF00", min: 80.0, max: 110.0}, // Yellow
+      {strokeStyle: "#EF0000", min: 110.0, max: 150.0}, // Green
    ],
    staticLabels: {
     font: "10px sans-serif",  // Specifies font
@@ -106,11 +106,17 @@ var listener_GPS = new ROSLIB.Topic({
   messageType : 'sensor_msgs/NavSatFix'
 });
 
+
+var changed = false;
+
 listener_GPS.subscribe(function(message) {
   document.getElementById("Latitude").innerHTML = message.latitude;
   document.getElementById("Longitude").innerHTML = message.longitude;
-  var coordinate = "https://maps.google.com/maps?q="+str(message.latitude)+","+str(message.longitude)+"&t=&z=150&ie=UTF8&iwloc=&output=embed";
-  document.getElementById("Longitude").src=coordinate;
+  if(!changed){
+    var coordinate = "https://maps.google.com/maps?q="+String(message.latitude)+","+String(message.longitude)+"&t=&z=150&ie=UTF8&iwloc=&output=embed";
+    document.getElementById("google_map").src=coordinate;
+    changed = true;
+  }
 });
 
 var listener_wheel_speed = new ROSLIB.Topic({
@@ -133,4 +139,86 @@ var listener_trilladora_speed = new ROSLIB.Topic({
 listener_trilladora_speed.subscribe(function(message) {
   document.getElementById("velocity_txt").innerHTML = message.data;
   gauge.set(message.data);
+});
+
+
+
+var listener_fuel_level = new ROSLIB.Topic({
+  ros : ros,
+  name : '/fuel_level',
+  messageType : 'std_msgs/Int32'
+});
+
+
+var displayed = false;
+listener_fuel_level.subscribe(function(message) {
+  if(message.data < 15){
+      if(!displayed){
+        $.notify({
+          icon: 'la la-bell',
+          title: 'System alert',
+          message: 'Fuel level extremely low',
+        },{
+          type: 'danger',
+          placement: {
+            from: "bottom",
+            align: "center"
+          },
+          time: 1000,
+        });
+        displayed = true;
+      }
+  }
+});
+
+var listener_oil_level = new ROSLIB.Topic({
+  ros : ros,
+  name : '/oil_level',
+  messageType : 'std_msgs/Int32'
+});
+
+listener_oil_level.subscribe(function(message) {
+  if(message.data < 15){
+      if(!displayed){
+        $.notify({
+          icon: 'la la-bell',
+          title: 'System alert',
+          message: 'Oil level extremely low',
+        },{
+          type: 'danger',
+          placement: {
+            from: "bottom",
+            align: "center"
+          },
+          time: 1000,
+        });
+        displayed = true;
+      }
+  }
+});
+
+var listener_wheel_pressure = new ROSLIB.Topic({
+  ros : ros,
+  name : '/wheel_pressure',
+  messageType : 'std_msgs/Int32'
+});
+
+listener_wheel_pressure.subscribe(function(message) {
+  if(message.data < 15){
+      if(!displayed){
+        $.notify({
+          icon: 'la la-bell',
+          title: 'System alert',
+          message: 'Wheel extremely low',
+        },{
+          type: 'danger',
+          placement: {
+            from: "bottom",
+            align: "center"
+          },
+          time: 1000,
+        });
+        displayed = true;
+      }
+  }
 });

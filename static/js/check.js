@@ -6,9 +6,8 @@ Modified (DD/MM/YY):
 	Ariadna Huesca  06/09/2022 Creation
 */
 
-
 var ros;
-var robot_IP="192.168.1.147";
+var robot_IP=_config.ROSBridge_IP;
 
 ros = new ROSLIB.Ros({
     url: "ws://" + robot_IP + ":9090"
@@ -25,16 +24,40 @@ var listener_fuel_level = new ROSLIB.Topic({
     messageType : 'std_msgs/Int32'
   });
   
+
+  var displayed = false;
   listener_fuel_level.subscribe(function(message) {
     document.getElementById("fuel_level").innerHTML = message.data;
-    if(message.data < 5){
+    if(message.data < 15){
         fuel = true;
         ok = false;
         document.getElementById("fuel_level_danger").style.display = "";
-    }else{
+        document.getElementById("fuel_level_warning").style.display = "none";
+        if(!displayed){
+          $.notify({
+            icon: 'la la-bell',
+            title: 'System alert',
+            message: 'Fuel level extremely low',
+          },{
+            type: 'danger',
+            placement: {
+              from: "bottom",
+              align: "center"
+            },
+            time: 1000,
+          });
+          displayed = true;
+        }
+    }else if(message.data < 51){
+        fuel = true;
+        ok = false;
+        document.getElementById("fuel_level_warning").style.display = "";
+        document.getElementById("fuel_level_danger").style.display = "none";
+    }    
+    else{
         fuel = false;
         document.getElementById("fuel_level_danger").style.display= "none";
-        
+        document.getElementById("fuel_level_warning").style.display = "none";        
     }
     check();
   });
@@ -57,13 +80,35 @@ var listener_fuel_level = new ROSLIB.Topic({
   
   listener_oil_level.subscribe(function(message) {
     document.getElementById("oil_level").innerHTML = message.data;
-    if(message.data < 5){
+    if(message.data < 15){
         oil = true;
         ok = false;
-        document.getElementById("oil_level_danger").style.display = "";
+        document.getElementById("oil_level_danger").style.display = "";        
+        document.getElementById("oil_level_warning").style.display = "none";
+        if(!displayed){
+          $.notify({
+            icon: 'la la-bell',
+            title: 'System alert',
+            message: 'Oil level extremely low',
+          },{
+            type: 'danger',
+            placement: {
+              from: "bottom",
+              align: "center"
+            },
+            time: 1000,
+          });
+          displayed = true;
+        }
+    }else if(message.data < 51){
+      oil = true;
+      ok = false;
+      document.getElementById("oil_level_danger").style.display = "none";        
+      document.getElementById("oil_level_warning").style.display = "";
     }else{
         oil = false;
         document.getElementById("oil_level_danger").style.display = "none";
+        document.getElementById("oil_level_warning").style.display = "none";
     }
     check();
   });
@@ -76,13 +121,36 @@ var listener_fuel_level = new ROSLIB.Topic({
   
   listener_wheel_pressure.subscribe(function(message) {
     document.getElementById("wheel_pressure").innerHTML = message.data;
-    if(wheel.data < 5){
+    if(message.data < 15){
         fuel = true;
         ok = false;
         document.getElementById("wheel_pressure_danger").style.display = "";
-    }else{
+        document.getElementById("wheel_pressure_warning").style.display = "none";
+        if(!displayed){
+          $.notify({
+            icon: 'la la-bell',
+            title: 'System alert',
+            message: 'Wheel extremely low',
+          },{
+            type: 'danger',
+            placement: {
+              from: "bottom",
+              align: "center"
+            },
+            time: 1000,
+          });
+          displayed = true;
+        }
+    }else if(message.data < 51){
+      fuel = true;
+      ok = false;
+      document.getElementById("wheel_pressure_danger").style.display = "none";
+      document.getElementById("wheel_pressure_warning").style.display = "";
+    }
+    else{
         fuel = false;
         document.getElementById("wheel_pressure_danger").style.display= "none";
+        document.getElementById("wheel_pressure_warning").style.display = "none";
     }
     check();
   });

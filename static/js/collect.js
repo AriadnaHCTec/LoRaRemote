@@ -8,7 +8,7 @@ Modified (DD/MM/YY):
 
 
 var ros;
-var robot_IP="192.168.1.147";
+var robot_IP=_config.ROSBridge_IP;
 
 ros = new ROSLIB.Ros({
     url: "ws://" + robot_IP + ":9090"
@@ -146,6 +146,7 @@ var listener_fill = new ROSLIB.Topic({
   
   listener_fill.subscribe(function(message) {
     document.getElementById("fill_txt").innerHTML = message.data;
+    document.getElementById("kilograms_txt").innerHTML = message.data/100 * 8000;
     Circles.create({
         id:           'task-complete',
         radius:       75,
@@ -160,6 +161,14 @@ var listener_fill = new ROSLIB.Topic({
         styleWrapper: true,
         styleText:    true
     });    
+
+    if (configFilled.data.labels.length === 5) {
+        configFilled.data.labels.shift();
+        configFilled.data.datasets[0].data.shift();
+    }
+    configFilled.data.labels.push("23:00");
+    configFilled.data.datasets[0].data.push(message.data);
+    lineChartS2.update();
   });
   
   var listener_kilos = new ROSLIB.Topic({
@@ -169,12 +178,85 @@ var listener_fill = new ROSLIB.Topic({
   });
   
   listener_kilos.subscribe(function(message) {
-    document.getElementById("kilograms_txt").innerHTML = message.data;
-    if (configSensor2.data.labels.length === 30) {
-        configSensor2.data.labels.shift();
-        configSensor2.data.datasets[0].data.shift();
+    document.getElementById("kilograms_txt").innerHTML = message.data;    
+  });
+
+  var listener_fuel_level = new ROSLIB.Topic({
+    ros : ros,
+    name : '/fuel_level',
+    messageType : 'std_msgs/Int32'
+  });
+  
+
+  var displayed = false;
+  listener_fuel_level.subscribe(function(message) {
+    if(message.data < 15){
+        if(!displayed){
+          $.notify({
+            icon: 'la la-bell',
+            title: 'System alert',
+            message: 'Fuel level extremely low',
+          },{
+            type: 'danger',
+            placement: {
+              from: "bottom",
+              align: "center"
+            },
+            time: 1000,
+          });
+          displayed = true;
+        }
     }
-    configSensor2.data.labels.push("23:00");
-    configSensor2.data.datasets[0].data.push(message.data);
-    lineChartS2.update();
+  });
+  
+  var listener_oil_level = new ROSLIB.Topic({
+    ros : ros,
+    name : '/oil_level',
+    messageType : 'std_msgs/Int32'
+  });
+  
+  listener_oil_level.subscribe(function(message) {
+    if(message.data < 15){
+        if(!displayed){
+          $.notify({
+            icon: 'la la-bell',
+            title: 'System alert',
+            message: 'Oil level extremely low',
+          },{
+            type: 'danger',
+            placement: {
+              from: "bottom",
+              align: "center"
+            },
+            time: 1000,
+          });
+          displayed = true;
+        }
+    }
+  });
+  
+  var listener_wheel_pressure = new ROSLIB.Topic({
+    ros : ros,
+    name : '/wheel_pressure',
+    messageType : 'std_msgs/Int32'
+  });
+  
+  listener_wheel_pressure.subscribe(function(message) {
+    if(message.data < 15){
+        if(!displayed){
+          $.notify({
+            icon: 'la la-bell',
+            title: 'System alert',
+            message: 'Wheel extremely low',
+          },{
+            type: 'danger',
+            placement: {
+              from: "bottom",
+              align: "center"
+            },
+            time: 1000,
+          });
+          displayed = true;
+        }
+    }
   });

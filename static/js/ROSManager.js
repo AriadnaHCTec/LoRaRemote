@@ -5,7 +5,7 @@ Made by:Ariadna Huesca Coronado
 Modified (DD/MM/YY): 
 	Ariadna Huesca  22/08/2022 Creation
 */
-var ros;
+/*var ros;
 var robot_IP;
 
 window.onload = function () {
@@ -26,3 +26,4 @@ window.onload = function () {
                 listener.unsubscribe(); 
           });
 }
+*/
